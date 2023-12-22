@@ -62,7 +62,6 @@ const Dashboard = () => {
 
     const [ongoing, setOngoing] = useState(taskData?.filter(d=>d.tab==='ongoing'));
 
-    console.log(taskData)
 
     // eslint-disable-next-line no-unused-vars
     const [{ isOver }, addToOngoing] = useDrop({
@@ -102,7 +101,13 @@ const Dashboard = () => {
         setTodo((prev) => [...prev, task]);
     }
 
-    
+    if(taskData==0 && !todo.title){
+        // console.log('lkjlkjkl')
+        return <p>Loading...</p>
+    }
+
+
+    console.log(taskData)
 
     return (
         <div className=" pb-20">

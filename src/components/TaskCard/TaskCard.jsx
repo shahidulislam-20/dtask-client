@@ -9,10 +9,13 @@ import { useState } from 'react';
 const TaskCard = ({ item, type, index, onDropTask, refet }) => {
 
     const axiosPublic = useAxiosPublic();
+
+    const [modalData, setModalData] = useState({});
+
     const { register, handleSubmit } = useForm({
         defaultValues: {
-            title: "name",
-            description: "titlelkjlkjfd"
+            title: `${modalData?.title}`,
+            description: `${modalData?.description}`,
         }
     });
 
@@ -59,13 +62,15 @@ const TaskCard = ({ item, type, index, onDropTask, refet }) => {
         });
     }
 
-    const [modalData, setModalData] = useState({});
-
-    console.log(modalData.title)
 
     const onSubmit = (data) => {
         console.log(data)
     }
+
+    const handleUpdate = task => {
+        setModalData(task);
+    }
+
 
     return <> <li
         className="shadow-lg mb-2 border-2"
@@ -75,11 +80,8 @@ const TaskCard = ({ item, type, index, onDropTask, refet }) => {
             <div className='flex justify-between items-center bg-[#FF2D9B] p-2 text-white font-semi'>
                 <h3>{item.title}</h3>
                 <div className='flex gap-2'>
-                    <span onClick={() => setModalData(item)} className='cursor-pointer hover:text-black'><FaPenToSquare onClick={() => document.getElementById('my_modal_5').showModal()}></FaPenToSquare></span>
+                    <span onClick={() => document.getElementById('my_modal_6').showModal()} className='cursor-pointer hover:text-black'><FaPenToSquare onClick={() => handleUpdate(item)}></FaPenToSquare></span>
                     <span onClick={() => handleDelete(item._id)} className='cursor-pointer hover:text-black'><FaTrash></FaTrash></span>
-
-                    
-
                 </div>
             </div>
             <div className='p-2'>
@@ -93,17 +95,17 @@ const TaskCard = ({ item, type, index, onDropTask, refet }) => {
             </div>
         </div></li>
 
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <dialog id="my_modal_6" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-            <h3 className="font-bold text-lg">Add Task</h3>
+            <h3 className="font-bold text-lg text-center uppercase">Update Task</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="text-left font-semibold">
                 <div>
                     <label>Title</label>
-                    <input defaultValue={modalData?.title} {...register("title")} className="p-2 bg-[#173D7B] text-white rounded-md w-full" type="text" name="title" placeholder="Add a title" />
+                    <input {...register("title")} className="p-2 bg-[#173D7B] text-white rounded-md w-full" type="text" name="title" placeholder="Add a title" />
                 </div>
                 <div className="my-3">
                     <label>Description</label>
-                    <textarea defaultValue="lkjlkfjkfd" {...register("description")} className="p-2 bg-[#173D7B] text-white rounded-md w-full" placeholder="Add description" cols="5" rows="5"></textarea>
+                    <textarea {...register("description")} className="p-2 bg-[#173D7B] text-white rounded-md w-full" placeholder="Add description" cols="5" rows="5"></textarea>
                 </div>
                 <div>
                     <label>Deadline</label>
@@ -118,7 +120,7 @@ const TaskCard = ({ item, type, index, onDropTask, refet }) => {
                     </select>
                 </div>
                 <div>
-                    <input className="btn w-full bg-[#FF2D9B] text-white hover:text-black font-semibold" type="submit" value="Add Task" />
+                    <input className="btn w-full bg-[#FF2D9B] text-white hover:text-black font-semibold" type="submit" value="Update Task" />
                 </div>
             </form>
             <div className="modal-action">

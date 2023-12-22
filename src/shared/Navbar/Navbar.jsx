@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import './Navbar.css';
 import { useContext } from "react";
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/blog">Blog</NavLink></li>
@@ -22,6 +23,7 @@ const logOutNotify = () => toast.success("Log out successfully!", {position: "to
             .then(result => {
                 console.log(result)
                 logOutNotify();
+                navigate('/');
             })
             .catch(error => {
                 console.log(error)

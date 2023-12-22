@@ -23,7 +23,7 @@ const Login = () => {
             .then(result => {
                 console.log(result)
                 loginNotify();
-                navigate('/dashboard');
+                navigate('/');
             })
             .catch(error => {
                 console.log(error)
@@ -36,7 +36,7 @@ const Login = () => {
             .then(result => {
                 console.log(result)
                 loginNotify();
-                navigate('/dashboard');
+                navigate('/');
             })
             .catch(error => {
                 console.log(error)

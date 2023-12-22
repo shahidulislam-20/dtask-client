@@ -42,7 +42,7 @@ const Register = () => {
                 .then(result => {
                     console.log(result)
                     registerNotify();
-                    navigate('/dashboard');
+                    navigate('/');
                 })
                 .catch(error => {
                     console.log(error)
@@ -61,7 +61,7 @@ const Register = () => {
         .then(result => {
             console.log(result)
             registerNotify();
-            navigate('/dashboard');
+            navigate('/');
         })
         .catch(error => {
             console.log(error)
