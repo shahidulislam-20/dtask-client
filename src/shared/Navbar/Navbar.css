@@ -1,0 +1,8 @@
+.active{
+    background: transparent!important;
+    color: #FF2D9B!important;
+}
+
+li a{
+    font-weight: bold;
+}
