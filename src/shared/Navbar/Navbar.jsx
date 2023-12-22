@@ -11,6 +11,7 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/blog">Blog</NavLink></li>
         {user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
     </>
 
